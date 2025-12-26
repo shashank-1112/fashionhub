@@ -1,0 +1,1230 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aria Couture - Luxury Fashion</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style type="text/tailwindcss">
+    @theme {
+      --color-clifford: #da373d;
+    }
+  </style>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+  <!-- <script src="/_sdk/element_sdk.js"></script> -->
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    :root {
+      --ivory: #FAF8F5;
+      --charcoal: #2D2D2D;
+      --rose-gold: #B76E79;
+      --muted-gold: #C9A962;
+      --cream: #F5F0EB;
+    }
+    
+    .font-serif-elegant {
+      font-family: 'Cormorant Garamond', serif;
+    }
+    
+    .font-sans-clean {
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .bg-ivory { background-color: var(--ivory); }
+    .bg-charcoal { background-color: var(--charcoal); }
+    .bg-cream { background-color: var(--cream); }
+    .text-charcoal { color: var(--charcoal); }
+    .text-rose-gold { color: var(--rose-gold); }
+    .text-muted-gold { color: var(--muted-gold); }
+    .border-rose-gold { border-color: var(--rose-gold); }
+    .bg-rose-gold { background-color: var(--rose-gold); }
+    
+    .product-card:hover .product-image-hover {
+      opacity: 1;
+    }
+    
+    .product-card:hover .product-image-main {
+      opacity: 0;
+    }
+    
+    .nav-link {
+      position: relative;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background-color: var(--rose-gold);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .collection-card {
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    
+    .collection-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+    
+    .testimonial-card {
+      transition: all 0.3s ease;
+    }
+    
+    .testimonial-card:hover {
+      transform: scale(1.02);
+    }
+    
+    .btn-luxury {
+      transition: all 0.3s ease;
+      letter-spacing: 0.1em;
+    }
+    
+    .btn-luxury:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(183, 110, 121, 0.3);
+    }
+    
+    .filter-checkbox:checked + label {
+      color: var(--rose-gold);
+    }
+    
+    .size-btn.active {
+      background-color: var(--charcoal);
+      color: white;
+    }
+    
+    .page-section {
+      display: none;
+    }
+    
+    .page-section.active {
+      display: block;
+    }
+    
+    .mobile-menu {
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+    }
+    
+    .mobile-menu.open {
+      transform: translateX(0);
+    }
+    
+    .wishlist-btn.active svg {
+      fill: var(--rose-gold);
+    }
+    
+    .instagram-item {
+      transition: all 0.3s ease;
+    }
+    
+    .instagram-item:hover {
+      opacity: 0.8;
+    }
+    
+    .instagram-item:hover .instagram-overlay {
+      opacity: 1;
+    }
+    
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--rose-gold);
+    }
+    
+    .cart-badge {
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+    
+    .fade-in {
+      animation: fadeIn 0.5s ease forwards;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .gallery-thumb {
+      transition: all 0.2s ease;
+    }
+    
+    .gallery-thumb:hover, .gallery-thumb.active {
+      border-color: var(--rose-gold);
+    }
+    
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -28px;
+      top: 8px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--rose-gold);
+      border: 3px solid white;
+      box-shadow: 0 0 0 3px var(--rose-gold);
+    }
+
+    /* Scrollbar styling */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: var(--cream);
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: var(--rose-gold);
+      border-radius: 4px;
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+ </head>
+ <body class="h-full bg-ivory font-sans-clean text-charcoal">
+  <div id="app" class="h-full overflow-auto"><!-- Navigation -->
+   <nav class="fixed top-0 left-0 right-0 z-50 bg-ivory/95 backdrop-blur-sm border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="flex items-center justify-between h-20"><!-- Logo --> <a href="#" onclick="navigateTo('home')" class="font-serif-elegant text-2xl sm:text-3xl font-semibold tracking-wide" id="nav-brand"> Aria Couture </a> <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center space-x-8"><a href="#" onclick="navigateTo('home')" class="nav-link text-sm uppercase tracking-widest font-medium">Home</a> <a href="#" onclick="navigateTo('shop')" class="nav-link text-sm uppercase tracking-widest font-medium">Shop</a> <a href="#" onclick="navigateTo('about')" class="nav-link text-sm uppercase tracking-widest font-medium">About</a> <a href="#" onclick="navigateTo('contact')" class="nav-link text-sm uppercase tracking-widest font-medium">Contact</a>
+      </div><!-- Icons -->
+      <div class="flex items-center space-x-4"><button class="p-2 hover:text-rose-gold transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg></button> <button class="p-2 hover:text-rose-gold transition-colors hidden sm:block">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+        </svg></button> <button class="p-2 hover:text-rose-gold transition-colors relative" onclick="toggleCart()">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+        </svg><span class="cart-badge absolute -top-1 -right-1 w-5 h-5 bg-rose-gold text-white text-xs rounded-full flex items-center justify-center" id="cart-count">2</span> </button> <!-- Mobile menu button --> <button class="md:hidden p-2" onclick="toggleMobileMenu()">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
+        </svg></button>
+      </div>
+     </div>
+    </div>
+   </nav><!-- Mobile Menu -->
+   <div id="mobile-menu" class="mobile-menu fixed inset-0 z-50 bg-ivory">
+    <div class="flex flex-col h-full">
+     <div class="flex items-center justify-between p-6 border-b"><span class="font-serif-elegant text-2xl font-semibold" id="mobile-brand">Aria Couture</span> <button onclick="toggleMobileMenu()">
+       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />
+       </svg></button>
+     </div>
+     <div class="flex flex-col p-6 space-y-6"><a href="#" onclick="navigateTo('home'); toggleMobileMenu();" class="font-serif-elegant text-2xl">Home</a> <a href="#" onclick="navigateTo('shop'); toggleMobileMenu();" class="font-serif-elegant text-2xl">Shop</a> <a href="#" onclick="navigateTo('about'); toggleMobileMenu();" class="font-serif-elegant text-2xl">About</a> <a href="#" onclick="navigateTo('contact'); toggleMobileMenu();" class="font-serif-elegant text-2xl">Contact</a>
+     </div>
+    </div>
+   </div><!-- ==================== HOME PAGE ==================== -->
+   <section id="page-home" class="page-section active"><!-- Hero Section -->
+    <div class="relative h-screen min-h-[600px] pt-20">
+     <div class="absolute inset-0 bg-gradient-to-r from-charcoal/60 to-transparent z-10"></div>
+     <div class="absolute inset-0">
+      <svg class="w-full h-full" viewbox="0 0 1920 1080" preserveaspectratio="xMidYMid slice"><defs>
+        <lineargradient id="heroGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+         <stop offset="0%" style="stop-color:#F5F0EB" />
+         <stop offset="50%" style="stop-color:#E8DED4" />
+         <stop offset="100%" style="stop-color:#D4C4B5" />
+        </lineargradient>
+        <pattern id="fabric" patternunits="userSpaceOnUse" width="100" height="100">
+         <path d="M0 50 Q25 30 50 50 T100 50" fill="none" stroke="#C9A962" stroke-width="0.5" opacity="0.3" />
+        </pattern>
+       </defs> <rect fill="url(#heroGradient)" width="100%" height="100%" /> <rect fill="url(#fabric)" width="100%" height="100%" /> <!-- Fashion Silhouette --> <g transform="translate(1000, 100)">
+        <ellipse cx="200" cy="150" rx="60" ry="75" fill="#2D2D2D" opacity="0.1" />
+        <path d="M140 225 Q200 200 260 225 L280 600 Q200 650 120 600 Z" fill="#2D2D2D" opacity="0.1" />
+        <path d="M120 600 Q80 700 100 900 L160 900 Q180 750 200 650 Q220 750 240 900 L300 900 Q320 700 280 600" fill="#2D2D2D" opacity="0.1" /> <!-- Dress details -->
+        <path d="M150 300 Q200 280 250 300" fill="none" stroke="#B76E79" stroke-width="2" opacity="0.6" />
+        <path d="M140 350 Q200 320 260 350" fill="none" stroke="#B76E79" stroke-width="1" opacity="0.4" />
+        <circle cx="200" cy="250" r="8" fill="#C9A962" opacity="0.5" />
+       </g> <!-- Decorative elements --> <circle cx="150" cy="200" r="100" fill="#B76E79" opacity="0.05" /> <circle cx="1700" cy="800" r="150" fill="#C9A962" opacity="0.05" />
+      </svg>
+     </div>
+     <div class="relative z-20 h-full flex items-center">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+       <div class="max-w-xl">
+        <p class="text-rose-gold text-sm uppercase tracking-[0.3em] mb-4 font-medium">New Collection 2024</p>
+        <h1 class="font-serif-elegant text-4xl sm:text-5xl lg:text-6xl text-white leading-tight mb-6" id="hero-tagline">Timeless Fashion Crafted with Elegance</h1>
+        <p class="text-white/80 text-lg mb-8 leading-relaxed">Discover our exclusive collection of handcrafted luxury wear, designed for the modern woman who embraces sophistication.</p>
+        <div class="flex flex-col sm:flex-row gap-4"><button onclick="navigateTo('shop')" class="btn-luxury bg-rose-gold text-white px-8 py-4 text-sm uppercase tracking-widest font-medium" id="hero-cta-primary"> Shop Collection </button> <button onclick="navigateTo('about')" class="btn-luxury border-2 border-white text-white px-8 py-4 text-sm uppercase tracking-widest font-medium hover:bg-white hover:text-charcoal" id="hero-cta-secondary"> Explore Designer </button>
+        </div>
+       </div>
+      </div>
+     </div><!-- Scroll indicator -->
+     <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
+      <div class="w-6 h-10 border-2 border-white/50 rounded-full flex items-start justify-center p-2">
+       <div class="w-1 h-3 bg-white/50 rounded-full animate-bounce"></div>
+      </div>
+     </div>
+    </div><!-- Featured Collections -->
+    <div class="py-20 bg-cream">
+     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+       <p class="text-rose-gold text-sm uppercase tracking-[0.3em] mb-3">Curated For You</p>
+       <h2 class="font-serif-elegant text-3xl sm:text-4xl lg:text-5xl">Featured Collections</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"><!-- Collection Card 1 -->
+       <div class="collection-card bg-white rounded-2xl overflow-hidden cursor-pointer" onclick="navigateTo('shop')">
+        <div class="aspect-[3/4] relative">
+         <svg class="w-full h-full" viewbox="0 0 300 400"><defs>
+           <lineargradient id="bridal1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#FFF8F0" />
+            <stop offset="100%" style="stop-color:#F5E6D3" />
+           </lineargradient>
+          </defs> <rect fill="url(#bridal1)" width="100%" height="100%" /> <!-- Bridal dress silhouette --> <ellipse cx="150" cy="80" rx="30" ry="38" fill="#E8DED4" /> <path d="M120 118 Q150 100 180 118 L220 380 Q150 400 80 380 Z" fill="#FFFFFF" stroke="#C9A962" stroke-width="1" /> <path d="M100 200 Q150 180 200 200" fill="none" stroke="#B76E79" stroke-width="2" /> <circle cx="150" cy="140" r="5" fill="#C9A962" /> <path d="M80 380 Q150 360 220 380" fill="none" stroke="#E8DED4" stroke-width="8" />
+         </svg>
+        </div>
+        <div class="p-6 text-center">
+         <h3 class="font-serif-elegant text-xl mb-2">Bridal Wear</h3>
+         <p class="text-gray-500 text-sm">24 Pieces</p>
+        </div>
+       </div><!-- Collection Card 2 -->
+       <div class="collection-card bg-white rounded-2xl overflow-hidden cursor-pointer" onclick="navigateTo('shop')">
+        <div class="aspect-[3/4] relative">
+         <svg class="w-full h-full" viewbox="0 0 300 400"><defs>
+           <lineargradient id="festive1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#B76E79" />
+            <stop offset="100%" style="stop-color:#8B4A52" />
+           </lineargradient>
+          </defs> <rect fill="url(#festive1)" width="100%" height="100%" /> <!-- Festive lehenga silhouette --> <ellipse cx="150" cy="70" rx="25" ry="32" fill="#F5E6D3" /> <rect x="130" y="102" width="40" height="60" fill="#C9A962" /> <path d="M80 162 Q150 150 220 162 L240 380 Q150 400 60 380 Z" fill="#2D2D2D" opacity="0.8" /> <path d="M90 200 Q150 180 210 200" fill="none" stroke="#C9A962" stroke-width="2" /> <path d="M85 250 Q150 230 215 250" fill="none" stroke="#C9A962" stroke-width="1" /> <circle cx="150" cy="120" r="4" fill="#FFFFFF" />
+         </svg>
+        </div>
+        <div class="p-6 text-center">
+         <h3 class="font-serif-elegant text-xl mb-2">Festive Wear</h3>
+         <p class="text-gray-500 text-sm">36 Pieces</p>
+        </div>
+       </div><!-- Collection Card 3 -->
+       <div class="collection-card bg-white rounded-2xl overflow-hidden cursor-pointer" onclick="navigateTo('shop')">
+        <div class="aspect-[3/4] relative">
+         <svg class="w-full h-full" viewbox="0 0 300 400"><defs>
+           <lineargradient id="casual1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#E8F4F0" />
+            <stop offset="100%" style="stop-color:#C8DED6" />
+           </lineargradient>
+          </defs> <rect fill="url(#casual1)" width="100%" height="100%" /> <!-- Casual outfit silhouette --> <ellipse cx="150" cy="65" rx="22" ry="28" fill="#E8DED4" /> <rect x="115" y="93" width="70" height="80" rx="5" fill="#FAF8F5" /> <path d="M115 173 L105 280 L145 280 L150 200 L155 280 L195 280 L185 173" fill="#2D2D2D" /> <line x1="130" y1="110" x2="170" y2="110" stroke="#B76E79" stroke-width="2" /> <circle cx="150" cy="100" r="3" fill="#C9A962" />
+         </svg>
+        </div>
+        <div class="p-6 text-center">
+         <h3 class="font-serif-elegant text-xl mb-2">Casual Chic</h3>
+         <p class="text-gray-500 text-sm">42 Pieces</p>
+        </div>
+       </div><!-- Collection Card 4 -->
+       <div class="collection-card bg-white rounded-2xl overflow-hidden cursor-pointer" onclick="navigateTo('shop')">
+        <div class="aspect-[3/4] relative">
+         <svg class="w-full h-full" viewbox="0 0 300 400"><defs>
+           <lineargradient id="evening1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#2D2D2D" />
+            <stop offset="100%" style="stop-color:#1A1A1A" />
+           </lineargradient>
+          </defs> <rect fill="url(#evening1)" width="100%" height="100%" /> <!-- Evening gown silhouette --> <ellipse cx="150" cy="60" rx="20" ry="26" fill="#E8DED4" /> <path d="M130 86 Q150 80 170 86 L180 180 Q150 190 120 180 Z" fill="#B76E79" /> <path d="M120 180 Q150 170 180 180 L200 380 Q150 400 100 380 Z" fill="#B76E79" /> <path d="M110 220 Q150 200 190 220" fill="none" stroke="#C9A962" stroke-width="1" /> <path d="M105 280 Q150 260 195 280" fill="none" stroke="#C9A962" stroke-width="1" /> <circle cx="150" cy="100" r="4" fill="#C9A962" />
+         </svg>
+        </div>
+        <div class="p-6 text-center">
+         <h3 class="font-serif-elegant text-xl mb-2">Evening Gowns</h3>
+         <p class="text-gray-500 text-sm">18 Pieces</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div><!-- Best Sellers -->
+    <div class="py-20 bg-ivory">
+     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row justify-between items-center mb-12">
+       <div>
+        <p class="text-rose-gold text-sm uppercase tracking-[0.3em] mb-3">Most Loved</p>
+        <h2 class="font-serif-elegant text-3xl sm:text-4xl">Best Sellers</h2>
+       </div><button onclick="navigateTo('shop')" class="mt-4 sm:mt-0 text-sm uppercase tracking-widest font-medium border-b-2 border-rose-gold text-rose-gold hover:text-charcoal hover:border-charcoal transition-colors"> View All </button>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="best-sellers-grid"><!-- Products will be rendered by JS -->
+      </div>
+     </div>
+    </div><!-- About Preview -->
+    <div class="py-20 bg-charcoal text-white">
+     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+       <div>
+        <svg class="w-full max-w-md mx-auto" viewbox="0 0 400 500"><defs>
+          <lineargradient id="designerBg" x1="0%" y1="0%" x2="100%" y2="100%">
+           <stop offset="0%" style="stop-color:#3D3D3D" />
+           <stop offset="100%" style="stop-color:#2D2D2D" />
+          </lineargradient>
+         </defs> <rect fill="url(#designerBg)" width="100%" height="100%" rx="20" /> <!-- Designer portrait illustration --> <ellipse cx="200" cy="180" rx="70" ry="85" fill="#E8DED4" /> <path d="M130 265 Q200 240 270 265 L280 450 Q200 480 120 450 Z" fill="#B76E79" /> <path d="M150 300 Q200 280 250 300" fill="none" stroke="#C9A962" stroke-width="2" /> <!-- Decorative elements --> <circle cx="80" cy="100" r="40" fill="#C9A962" opacity="0.1" /> <circle cx="320" cy="400" r="60" fill="#B76E79" opacity="0.1" />
+        </svg>
+       </div>
+       <div>
+        <p class="text-rose-gold text-sm uppercase tracking-[0.3em] mb-3">The Designer</p>
+        <h2 class="font-serif-elegant text-3xl sm:text-4xl lg:text-5xl mb-6" id="about-designer-name">Aria Sharma</h2>
+        <p class="text-gray-300 text-lg leading-relaxed mb-6">With over 15 years of experience in haute couture, Aria brings together traditional Indian craftsmanship with contemporary global aesthetics. Each piece tells a story of dedication, artistry, and timeless elegance.</p>
+        <p class="text-gray-400 leading-relaxed mb-8">"Fashion is not just about clothes; it's about the confidence they inspire and the stories they tell. Every stitch, every fabric choice is a deliberate act of creation."</p><button onclick="navigateTo('about')" class="btn-luxury border-2 border-rose-gold text-rose-gold px-8 py-4 text-sm uppercase tracking-widest font-medium hover:bg-rose-gold hover:text-white"> Read Full Story </button>
+       </div>
+      </div>
+     </div>
+    </div><!-- Testimonials -->
+    <div class="py-20 bg-cream">
+     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+       <p class="text-rose-gold text-sm uppercase tracking-[0.3em] mb-3">Client Love</p>
+       <h2 class="font-serif-elegant text-3xl sm:text-4xl lg:text-5xl">What They Say</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8"><!-- Testimonial 1 -->
+       <div class="testimonial-card bg-white p-8 rounded-2xl shadow-sm">
+        <div class="flex mb-4"><span class="text-muted-gold text-xl">★★★★★</span>
+        </div>
+        <p class="text-gray-600 mb-6 leading-relaxed italic">"My bridal lehenga was beyond my dreams. The craftsmanship, the attention to detail, everything was absolutely perfect. I felt like royalty on my special day."</p>
+        <div class="flex items-center">
+         <div class="w-12 h-12 rounded-full bg-rose-gold/20 flex items-center justify-center text-rose-gold font-serif-elegant text-xl">
+          P
+         </div>
+         <div class="ml-4">
+          <p class="font-medium">Priya Mehta</p>
+          <p class="text-sm text-gray-500">Mumbai</p>
+         </div>
+        </div>
+       </div><!-- Testimonial 2 -->
+       <div class="testimonial-card bg-white p-8 rounded-2xl shadow-sm">
+        <div class="flex mb-4"><span class="text-muted-gold text-xl">★★★★★</span>
+        </div>
+        <p class="text-gray-600 mb-6 leading-relaxed italic">"I've been a loyal customer for 3 years now. The quality is consistently exceptional, and the designs are always ahead of the trend. Simply the best!"</p>
+        <div class="flex items-center">
+         <div class="w-12 h-12 rounded-full bg-rose-gold/20 flex items-center justify-center text-rose-gold font-serif-elegant text-xl">
+          A
+         </div>
+         <div class="ml-4">
+          <p class="font-medium">Ananya Kapoor</p>
+          <p class="text-sm text-gray-500">Delhi</p>
+         </div>
+        </div>
+       </div><!-- Testimonial 3 -->
+       <div class="testimonial-card bg-white p-8 rounded-2xl shadow-sm">
+        <div class="flex mb-4"><span class="text-muted-gold text-xl">★★★★★</span>
+        </div>
+        <p class="text-gray-600 mb-6 leading-relaxed italic">"The evening gown I purchased was stunning. It fit perfectly and I received so many compliments. The whole shopping experience was delightful."</p>
+        <div class="flex items-center">
+         <div class="w-12 h-12 rounded-full bg-rose-gold/20 flex items-center justify-center text-rose-gold font-serif-elegant text-xl">
+          R
+         </div>
+         <div class="ml-4">
+          <p class="font-medium">Rhea Singh</p>
+          <p class="text-sm text-gray-500">Bangalore</p>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div><!-- Instagram / Lookbook -->
+    <div class="py-20 bg-ivory">
+     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+       <p class="text-rose-gold text-sm uppercase tracking-[0.3em] mb-3">@ariacouture</p>
+       <h2 class="font-serif-elegant text-3xl sm:text-4xl">Follow Our Journey</h2>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4"><!-- Instagram Items -->
+       <div class="instagram-item aspect-square relative cursor-pointer rounded-lg overflow-hidden">
+        <svg class="w-full h-full" viewbox="0 0 200 200"><rect fill="#E8DED4" width="100%" height="100%" /> <circle cx="100" cy="100" r="50" fill="#B76E79" opacity="0.3" /> <path d="M80 60 L80 140 L120 140 L120 60" fill="#2D2D2D" opacity="0.2" />
+        </svg>
+        <div class="instagram-overlay absolute inset-0 bg-charcoal/50 opacity-0 flex items-center justify-center transition-opacity">
+         <svg class="w-8 h-8 text-white" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+         </svg>
+        </div>
+       </div>
+       <div class="instagram-item aspect-square relative cursor-pointer rounded-lg overflow-hidden">
+        <svg class="w-full h-full" viewbox="0 0 200 200"><rect fill="#F5E6D3" width="100%" height="100%" /> <ellipse cx="100" cy="80" rx="30" ry="40" fill="#E8DED4" /> <path d="M70 120 L60 180 L140 180 L130 120" fill="#B76E79" opacity="0.5" />
+        </svg>
+        <div class="instagram-overlay absolute inset-0 bg-charcoal/50 opacity-0 flex items-center justify-center transition-opacity">
+         <svg class="w-8 h-8 text-white" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+         </svg>
+        </div>
+       </div>
+       <div class="instagram-item aspect-square relative cursor-pointer rounded-lg overflow-hidden">
+        <svg class="w-full h-full" viewbox="0 0 200 200"><rect fill="#C9A962" opacity="0.3" width="100%" height="100%" /> <rect x="60" y="40" width="80" height="120" fill="#2D2D2D" opacity="0.2" /> <circle cx="100" cy="60" r="20" fill="#E8DED4" />
+        </svg>
+        <div class="instagram-overlay absolute inset-0 bg-charcoal/50 opacity-0 flex items-center justify-center transition-opacity">
+         <svg class="w-8 h-8 text-white" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+         </svg>
+        </div>
+       </div>
+       <div class="instagram-item aspect-square relative cursor-pointer rounded-lg overflow-hidden">
+        <svg class="w-full h-full" viewbox="0 0 200 200"><rect fill="#B76E79" opacity="0.2" width="100%" height="100%" /> <path d="M50 80 Q100 40 150 80 L160 180 L40 180 Z" fill="#2D2D2D" opacity="0.2" /> <circle cx="100" cy="50" r="25" fill="#E8DED4" />
+        </svg>
+        <div class="instagram-overlay absolute inset-0 bg-charcoal/50 opacity-0 flex items-center justify-center transition-opacity">
+         <svg class="w-8 h-8 text-white" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+         </svg>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- ==================== SHOP PAGE ==================== -->
+   <section id="page-shop" class="page-section">
+    <div class="pt-28 pb-20 bg-ivory min-h-screen">
+     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><!-- Page Header -->
+      <div class="text-center mb-12">
+       <h1 class="font-serif-elegant text-4xl sm:text-5xl mb-4">Shop Collection</h1>
+       <p class="text-gray-500">Discover our curated selection of luxury fashion</p>
+      </div>
+      <div class="flex flex-col lg:flex-row gap-8"><!-- Filters Sidebar -->
+       <div class="lg:w-64 flex-shrink-0">
+        <div class="bg-white rounded-2xl p-6 shadow-sm sticky top-28">
+         <h3 class="font-serif-elegant text-xl mb-6">Filters</h3><!-- Category Filter -->
+         <div class="mb-6">
+          <h4 class="font-medium mb-3 text-sm uppercase tracking-wider">Category</h4>
+          <div class="space-y-2"><label class="flex items-center cursor-pointer"> <input type="checkbox" class="filter-checkbox w-4 h-4 rounded border-gray-300 text-rose-gold focus:ring-rose-gold" checked> <span class="ml-3 text-sm">Bridal Wear</span> </label> <label class="flex items-center cursor-pointer"> <input type="checkbox" class="filter-checkbox w-4 h-4 rounded border-gray-300 text-rose-gold focus:ring-rose-gold" checked> <span class="ml-3 text-sm">Festive Wear</span> </label> <label class="flex items-center cursor-pointer"> <input type="checkbox" class="filter-checkbox w-4 h-4 rounded border-gray-300 text-rose-gold focus:ring-rose-gold" checked> <span class="ml-3 text-sm">Casual Chic</span> </label> <label class="flex items-center cursor-pointer"> <input type="checkbox" class="filter-checkbox w-4 h-4 rounded border-gray-300 text-rose-gold focus:ring-rose-gold" checked> <span class="ml-3 text-sm">Evening Gowns</span> </label>
+          </div>
+         </div><!-- Price Filter -->
+         <div class="mb-6">
+          <h4 class="font-medium mb-3 text-sm uppercase tracking-wider">Price Range</h4>
+          <div class="space-y-2"><label class="flex items-center cursor-pointer"> <input type="checkbox" class="filter-checkbox w-4 h-4 rounded border-gray-300 text-rose-gold focus:ring-rose-gold"> <span class="ml-3 text-sm">Under ₹10,000</span> </label> <label class="flex items-center cursor-pointer"> <input type="checkbox" class="filter-checkbox w-4 h-4 rounded border-gray-300 text-rose-gold focus:ring-rose-gold"> <span class="ml-3 text-sm">₹10,000 - ₹20,000</span> </label> <label class="flex items-center cursor-pointer"> <input type="checkbox" class="filter-checkbox w-4 h-4 rounded border-gray-300 text-rose-gold focus:ring-rose-gold"> <span class="ml-3 text-sm">₹20,000 - ₹30,000</span> </label> <label class="flex items-center cursor-pointer"> <input type="checkbox" class="filter-checkbox w-4 h-4 rounded border-gray-300 text-rose-gold focus:ring-rose-gold"> <span class="ml-3 text-sm">Above ₹30,000</span> </label>
+          </div>
+         </div><!-- Fabric Filter -->
+         <div class="mb-6">
+          <h4 class="font-medium mb-3 text-sm uppercase tracking-wider">Fabric</h4>
+          <div class="space-y-2"><label class="flex items-center cursor-pointer"> <input type="checkbox" class="filter-checkbox w-4 h-4 rounded border-gray-300 text-rose-gold focus:ring-rose-gold"> <span class="ml-3 text-sm">Silk</span> </label> <label class="flex items-center cursor-pointer"> <input type="checkbox" class="filter-checkbox w-4 h-4 rounded border-gray-300 text-rose-gold focus:ring-rose-gold"> <span class="ml-3 text-sm">Georgette</span> </label> <label class="flex items-center cursor-pointer"> <input type="checkbox" class="filter-checkbox w-4 h-4 rounded border-gray-300 text-rose-gold focus:ring-rose-gold"> <span class="ml-3 text-sm">Cotton</span> </label> <label class="flex items-center cursor-pointer"> <input type="checkbox" class="filter-checkbox w-4 h-4 rounded border-gray-300 text-rose-gold focus:ring-rose-gold"> <span class="ml-3 text-sm">Velvet</span> </label>
+          </div>
+         </div><!-- Occasion Filter -->
+         <div>
+          <h4 class="font-medium mb-3 text-sm uppercase tracking-wider">Occasion</h4>
+          <div class="space-y-2"><label class="flex items-center cursor-pointer"> <input type="checkbox" class="filter-checkbox w-4 h-4 rounded border-gray-300 text-rose-gold focus:ring-rose-gold"> <span class="ml-3 text-sm">Wedding</span> </label> <label class="flex items-center cursor-pointer"> <input type="checkbox" class="filter-checkbox w-4 h-4 rounded border-gray-300 text-rose-gold focus:ring-rose-gold"> <span class="ml-3 text-sm">Party</span> </label> <label class="flex items-center cursor-pointer"> <input type="checkbox" class="filter-checkbox w-4 h-4 rounded border-gray-300 text-rose-gold focus:ring-rose-gold"> <span class="ml-3 text-sm">Casual</span> </label> <label class="flex items-center cursor-pointer"> <input type="checkbox" class="filter-checkbox w-4 h-4 rounded border-gray-300 text-rose-gold focus:ring-rose-gold"> <span class="ml-3 text-sm">Festive</span> </label>
+          </div>
+         </div>
+        </div>
+       </div><!-- Products Grid -->
+       <div class="flex-1"><!-- Sort Bar -->
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
+         <p class="text-gray-500 text-sm">Showing 12 of 120 products</p>
+         <div class="flex items-center gap-4"><label for="sort-select" class="text-sm text-gray-500">Sort by:</label> <select id="sort-select" class="border border-gray-200 rounded-lg px-4 py-2 text-sm bg-white"> <option>New Arrivals</option> <option>Price: Low to High</option> <option>Price: High to Low</option> <option>Popular</option> </select>
+         </div>
+        </div><!-- Products -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="shop-products-grid"><!-- Products rendered by JS -->
+        </div><!-- Load More -->
+        <div class="text-center mt-12"><button class="btn-luxury border-2 border-charcoal text-charcoal px-12 py-4 text-sm uppercase tracking-widest font-medium hover:bg-charcoal hover:text-white"> Load More </button>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- ==================== PRODUCT DETAIL PAGE ==================== -->
+   <section id="page-product" class="page-section">
+    <div class="pt-28 pb-20 bg-ivory min-h-screen">
+     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><!-- Breadcrumb -->
+      <nav class="mb-8">
+       <ol class="flex items-center space-x-2 text-sm">
+        <li><a href="#" onclick="navigateTo('home')" class="text-gray-500 hover:text-rose-gold">Home</a></li>
+        <li class="text-gray-300">/</li>
+        <li><a href="#" onclick="navigateTo('shop')" class="text-gray-500 hover:text-rose-gold">Shop</a></li>
+        <li class="text-gray-300">/</li>
+        <li class="text-charcoal" id="product-breadcrumb">Celestial Bloom Lehenga</li>
+       </ol>
+      </nav>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12"><!-- Product Gallery -->
+       <div>
+        <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-cream mb-4" id="main-product-image">
+         <svg class="w-full h-full" viewbox="0 0 400 533"><defs>
+           <lineargradient id="productGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#F5E6D3" />
+            <stop offset="100%" style="stop-color:#E8DED4" />
+           </lineargradient>
+          </defs> <rect fill="url(#productGrad)" width="100%" height="100%" /> <ellipse cx="200" cy="120" rx="50" ry="65" fill="#E8DED4" /> <path d="M150 185 Q200 165 250 185 L270 500 Q200 533 130 500 Z" fill="#B76E79" /> <path d="M160 250 Q200 230 240 250" fill="none" stroke="#C9A962" stroke-width="2" /> <path d="M155 320 Q200 300 245 320" fill="none" stroke="#C9A962" stroke-width="1.5" /> <path d="M150 390 Q200 370 250 390" fill="none" stroke="#C9A962" stroke-width="1" /> <circle cx="200" cy="200" r="6" fill="#C9A962" />
+         </svg>
+        </div>
+        <div class="grid grid-cols-4 gap-4"><button class="gallery-thumb aspect-square rounded-lg overflow-hidden border-2 border-rose-gold bg-cream">
+          <svg class="w-full h-full" viewbox="0 0 100 100"><rect fill="#E8DED4" width="100%" height="100%" /> <ellipse cx="50" cy="30" rx="15" ry="20" fill="#F5E6D3" /> <path d="M35 50 L30 90 L70 90 L65 50" fill="#B76E79" />
+          </svg></button> <button class="gallery-thumb aspect-square rounded-lg overflow-hidden border-2 border-transparent bg-cream hover:border-rose-gold">
+          <svg class="w-full h-full" viewbox="0 0 100 100"><rect fill="#F5E6D3" width="100%" height="100%" /> <path d="M30 30 L70 30 L75 90 L25 90 Z" fill="#B76E79" opacity="0.8" />
+          </svg></button> <button class="gallery-thumb aspect-square rounded-lg overflow-hidden border-2 border-transparent bg-cream hover:border-rose-gold">
+          <svg class="w-full h-full" viewbox="0 0 100 100"><rect fill="#E8DED4" width="100%" height="100%" /> <circle cx="50" cy="50" r="30" fill="#C9A962" opacity="0.3" /> <path d="M40 40 L60 40 L65 80 L35 80 Z" fill="#B76E79" />
+          </svg></button> <button class="gallery-thumb aspect-square rounded-lg overflow-hidden border-2 border-transparent bg-cream hover:border-rose-gold">
+          <svg class="w-full h-full" viewbox="0 0 100 100"><rect fill="#F5E6D3" width="100%" height="100%" /> <rect x="25" y="20" width="50" height="70" fill="#B76E79" opacity="0.6" />
+          </svg></button>
+        </div>
+       </div><!-- Product Info -->
+       <div>
+        <div class="mb-6"><span class="inline-block bg-rose-gold/10 text-rose-gold text-xs uppercase tracking-widest px-3 py-1 rounded-full mb-4">New Arrival</span>
+         <h1 class="font-serif-elegant text-3xl sm:text-4xl mb-2" id="product-title">Celestial Bloom Lehenga</h1>
+         <p class="text-gray-500">by Aria Couture</p>
+        </div>
+        <div class="flex items-center gap-4 mb-8"><span class="font-serif-elegant text-3xl text-charcoal" id="product-price">₹24,999</span> <span class="text-gray-400 line-through" id="product-original-price">₹29,999</span> <span class="bg-muted-gold/20 text-muted-gold text-sm px-3 py-1 rounded-full">17% OFF</span>
+        </div><!-- Size Selector -->
+        <div class="mb-8">
+         <div class="flex justify-between items-center mb-4">
+          <h3 class="font-medium">Select Size</h3><button class="text-rose-gold text-sm underline">Size Guide</button>
+         </div>
+         <div class="flex gap-3"><button class="size-btn w-12 h-12 border-2 border-gray-200 rounded-lg font-medium hover:border-charcoal transition-colors">XS</button> <button class="size-btn w-12 h-12 border-2 border-gray-200 rounded-lg font-medium hover:border-charcoal transition-colors active">S</button> <button class="size-btn w-12 h-12 border-2 border-gray-200 rounded-lg font-medium hover:border-charcoal transition-colors">M</button> <button class="size-btn w-12 h-12 border-2 border-gray-200 rounded-lg font-medium hover:border-charcoal transition-colors">L</button> <button class="size-btn w-12 h-12 border-2 border-gray-200 rounded-lg font-medium hover:border-charcoal transition-colors">XL</button>
+         </div>
+        </div><!-- Fabric & Care -->
+        <div class="mb-8 p-6 bg-cream rounded-2xl">
+         <h3 class="font-medium mb-4">Fabric &amp; Care</h3>
+         <div class="grid grid-cols-2 gap-4 text-sm">
+          <div><span class="text-gray-500">Fabric:</span> <span class="ml-2">Pure Silk</span>
+          </div>
+          <div><span class="text-gray-500">Work:</span> <span class="ml-2">Hand Embroidered</span>
+          </div>
+          <div><span class="text-gray-500">Occasion:</span> <span class="ml-2">Wedding, Festive</span>
+          </div>
+          <div><span class="text-gray-500">Care:</span> <span class="ml-2">Dry Clean Only</span>
+          </div>
+         </div>
+        </div><!-- Designer Notes -->
+        <div class="mb-8">
+         <h3 class="font-medium mb-4">Designer Notes</h3>
+         <p class="text-gray-600 leading-relaxed">Inspired by the celestial beauty of a moonlit garden, this exquisite lehenga features intricate hand-embroidered floral motifs in rose gold zardozi work. The lustrous silk fabric drapes beautifully, creating a silhouette that's both regal and contemporary. Perfect for the bride who wants to make a statement.</p>
+        </div><!-- CTAs -->
+        <div class="flex flex-col sm:flex-row gap-4 mb-8"><button onclick="addToCart()" class="btn-luxury flex-1 bg-charcoal text-white px-8 py-4 text-sm uppercase tracking-widest font-medium hover:bg-rose-gold"> Add to Cart </button> <button class="btn-luxury flex-1 bg-rose-gold text-white px-8 py-4 text-sm uppercase tracking-widest font-medium"> Buy Now </button>
+        </div><!-- Wishlist & Share -->
+        <div class="flex items-center gap-6"><button class="flex items-center gap-2 text-gray-500 hover:text-rose-gold transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+          </svg><span class="text-sm">Add to Wishlist</span> </button> <button class="flex items-center gap-2 text-gray-500 hover:text-rose-gold transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+          </svg><span class="text-sm">Share</span> </button>
+        </div>
+       </div>
+      </div><!-- Related Products -->
+      <div class="mt-20">
+       <h2 class="font-serif-elegant text-2xl sm:text-3xl mb-8">You May Also Like</h2>
+       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="related-products-grid"><!-- Rendered by JS -->
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- ==================== ABOUT PAGE ==================== -->
+   <section id="page-about" class="page-section">
+    <div class="pt-20 bg-ivory"><!-- Hero -->
+     <div class="relative h-[60vh] min-h-[400px]">
+      <div class="absolute inset-0 bg-gradient-to-b from-charcoal/40 to-charcoal/60 z-10"></div>
+      <div class="absolute inset-0">
+       <svg class="w-full h-full" viewbox="0 0 1920 600" preserveaspectratio="xMidYMid slice"><defs>
+         <lineargradient id="aboutHero" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#E8DED4" />
+          <stop offset="100%" style="stop-color:#D4C4B5" />
+         </lineargradient>
+        </defs> <rect fill="url(#aboutHero)" width="100%" height="100%" /> <!-- Designer at work illustration --> <g transform="translate(800, 150)">
+         <rect x="0" y="100" width="300" height="200" rx="10" fill="#2D2D2D" opacity="0.1" />
+         <ellipse cx="150" cy="80" rx="40" ry="50" fill="#E8DED4" />
+         <path d="M110 130 Q150 110 190 130 L200 300 L100 300 Z" fill="#B76E79" opacity="0.8" />
+         <rect x="50" y="150" width="80" height="100" fill="#FAF8F5" opacity="0.3" />
+         <rect x="170" y="150" width="80" height="100" fill="#FAF8F5" opacity="0.3" />
+        </g> <circle cx="200" cy="100" r="80" fill="#C9A962" opacity="0.1" /> <circle cx="1600" cy="400" r="120" fill="#B76E79" opacity="0.1" />
+       </svg>
+      </div>
+      <div class="relative z-20 h-full flex items-center justify-center text-center">
+       <div>
+        <p class="text-rose-gold text-sm uppercase tracking-[0.3em] mb-4">The Story</p>
+        <h1 class="font-serif-elegant text-4xl sm:text-5xl lg:text-6xl text-white" id="about-hero-title">Meet Aria Sharma</h1>
+       </div>
+      </div>
+     </div><!-- Story Section -->
+     <div class="py-20">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+       <div class="text-center mb-16">
+        <h2 class="font-serif-elegant text-3xl sm:text-4xl mb-6">A Journey of Passion &amp; Elegance</h2>
+        <p class="text-gray-600 text-lg leading-relaxed">From a small studio in Jaipur to dressing celebrities and brides across the globe, Aria Couture represents the pinnacle of Indian craftsmanship meeting contemporary design.</p>
+       </div><!-- Timeline -->
+       <div class="relative border-l-2 border-rose-gold/30 ml-4 pl-8 space-y-12">
+        <div class="timeline-item relative"><span class="text-rose-gold text-sm font-medium">2008</span>
+         <h3 class="font-serif-elegant text-xl mt-2 mb-3">The Beginning</h3>
+         <p class="text-gray-600 leading-relaxed">Fresh from studying fashion design at NIFT, Aria started with a small collection of 12 pieces, each hand-embroidered by local artisans in Jaipur.</p>
+        </div>
+        <div class="timeline-item relative"><span class="text-rose-gold text-sm font-medium">2012</span>
+         <h3 class="font-serif-elegant text-xl mt-2 mb-3">First Fashion Week</h3>
+         <p class="text-gray-600 leading-relaxed">Debuted at Lakme Fashion Week with a collection inspired by Mughal architecture. The collection was an instant hit, attracting attention from Bollywood stylists.</p>
+        </div>
+        <div class="timeline-item relative"><span class="text-rose-gold text-sm font-medium">2016</span>
+         <h3 class="font-serif-elegant text-xl mt-2 mb-3">International Recognition</h3>
+         <p class="text-gray-600 leading-relaxed">Featured in Vogue India and showcased at London Fashion Week. Expanded the atelier to include a team of 50 master craftsmen.</p>
+        </div>
+        <div class="timeline-item relative"><span class="text-rose-gold text-sm font-medium">2020</span>
+         <h3 class="font-serif-elegant text-xl mt-2 mb-3">Digital Revolution</h3>
+         <p class="text-gray-600 leading-relaxed">Launched the online boutique, bringing the Aria Couture experience to discerning customers worldwide, while maintaining the essence of personalized service.</p>
+        </div>
+        <div class="timeline-item relative"><span class="text-rose-gold text-sm font-medium">Today</span>
+         <h3 class="font-serif-elegant text-xl mt-2 mb-3">A Legacy Continues</h3>
+         <p class="text-gray-600 leading-relaxed">With over 5,000 happy brides and a celebrity clientele, Aria Couture continues to create timeless pieces that celebrate Indian craftsmanship.</p>
+        </div>
+       </div>
+      </div>
+     </div><!-- Values Section -->
+     <div class="py-20 bg-cream">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+       <div class="text-center mb-16">
+        <p class="text-rose-gold text-sm uppercase tracking-[0.3em] mb-3">Our Philosophy</p>
+        <h2 class="font-serif-elegant text-3xl sm:text-4xl">What We Stand For</h2>
+       </div>
+       <div class="grid grid-cols-1 md:grid-cols-3 gap-8"><!-- Value 1 -->
+        <div class="bg-white p-8 rounded-2xl text-center shadow-sm">
+         <div class="w-16 h-16 mx-auto mb-6 bg-rose-gold/10 rounded-full flex items-center justify-center">
+          <svg class="w-8 h-8 text-rose-gold" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+          </svg>
+         </div>
+         <h3 class="font-serif-elegant text-xl mb-4">Handcrafted Excellence</h3>
+         <p class="text-gray-600 leading-relaxed">Every piece is meticulously crafted by our team of master artisans, ensuring unparalleled quality and attention to detail.</p>
+        </div><!-- Value 2 -->
+        <div class="bg-white p-8 rounded-2xl text-center shadow-sm">
+         <div class="w-16 h-16 mx-auto mb-6 bg-rose-gold/10 rounded-full flex items-center justify-center">
+          <svg class="w-8 h-8 text-rose-gold" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+         </div>
+         <h3 class="font-serif-elegant text-xl mb-4">Sustainable Fabrics</h3>
+         <p class="text-gray-600 leading-relaxed">We source our fabrics responsibly, working with weavers who follow sustainable practices to minimize environmental impact.</p>
+        </div><!-- Value 3 -->
+        <div class="bg-white p-8 rounded-2xl text-center shadow-sm">
+         <div class="w-16 h-16 mx-auto mb-6 bg-rose-gold/10 rounded-full flex items-center justify-center">
+          <svg class="w-8 h-8 text-rose-gold" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+         </div>
+         <h3 class="font-serif-elegant text-xl mb-4">Made in India</h3>
+         <p class="text-gray-600 leading-relaxed">Proudly designed and crafted in India, supporting local artisan communities and preserving traditional embroidery techniques.</p>
+        </div>
+       </div>
+      </div>
+     </div><!-- Quote Section -->
+     <div class="py-20 bg-charcoal text-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+       <svg class="w-12 h-12 mx-auto mb-8 text-rose-gold opacity-50" fill="currentColor" viewbox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+       </svg>
+       <p class="font-serif-elegant text-2xl sm:text-3xl lg:text-4xl leading-relaxed mb-8 italic">"Fashion is the armor to survive the reality of everyday life. My mission is to create pieces that make every woman feel like the queen she is."</p>
+       <p class="text-rose-gold text-lg" id="quote-attribution">— Aria Sharma, Founder &amp; Creative Director</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- ==================== CONTACT PAGE ==================== -->
+   <section id="page-contact" class="page-section">
+    <div class="pt-28 pb-20 bg-ivory min-h-screen">
+     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+       <p class="text-rose-gold text-sm uppercase tracking-[0.3em] mb-3">Get in Touch</p>
+       <h1 class="font-serif-elegant text-4xl sm:text-5xl mb-4">Contact Us</h1>
+       <p class="text-gray-500 max-w-2xl mx-auto">We'd love to hear from you. Whether you have a question about our collections, need styling advice, or want to schedule a consultation, we're here to help.</p>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12"><!-- Contact Form -->
+       <div class="bg-white p-8 sm:p-12 rounded-2xl shadow-sm">
+        <h2 class="font-serif-elegant text-2xl mb-8">Send a Message</h2>
+        <form id="contact-form" onsubmit="handleContactSubmit(event)">
+         <div class="mb-6"><label for="contact-name" class="block text-sm font-medium mb-2">Your Name</label> <input type="text" id="contact-name" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:border-rose-gold transition-colors" placeholder="Enter your name" required>
+         </div>
+         <div class="mb-6"><label for="contact-email" class="block text-sm font-medium mb-2">Email Address</label> <input type="email" id="contact-email" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:border-rose-gold transition-colors" placeholder="Enter your email" required>
+         </div>
+         <div class="mb-6"><label for="contact-message" class="block text-sm font-medium mb-2">Message</label> <textarea id="contact-message" rows="5" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:border-rose-gold transition-colors resize-none" placeholder="How can we help you?" required></textarea>
+         </div><button type="submit" class="btn-luxury w-full bg-charcoal text-white px-8 py-4 text-sm uppercase tracking-widest font-medium hover:bg-rose-gold"> Send Message </button>
+        </form>
+        <div id="contact-success" class="hidden mt-6 p-4 bg-green-50 text-green-700 rounded-lg text-center">
+         Thank you! Your message has been sent successfully. We'll get back to you soon.
+        </div>
+       </div><!-- Contact Info -->
+       <div>
+        <div class="bg-cream p-8 sm:p-12 rounded-2xl mb-8">
+         <h2 class="font-serif-elegant text-2xl mb-8">Visit Our Studio</h2>
+         <div class="space-y-6">
+          <div class="flex items-start gap-4">
+           <div class="w-10 h-10 bg-rose-gold/10 rounded-full flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-rose-gold" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+           </div>
+           <div>
+            <h3 class="font-medium mb-1">Address</h3>
+            <p class="text-gray-600">42, Fashion Street<br>
+              Jaipur, Rajasthan 302001<br>
+              India</p>
+           </div>
+          </div>
+          <div class="flex items-start gap-4">
+           <div class="w-10 h-10 bg-rose-gold/10 rounded-full flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-rose-gold" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+           </div>
+           <div>
+            <h3 class="font-medium mb-1">Studio Hours</h3>
+            <p class="text-gray-600">Monday - Saturday: 10:00 AM - 7:00 PM<br>
+              Sunday: By Appointment Only</p>
+           </div>
+          </div>
+          <div class="flex items-start gap-4">
+           <div class="w-10 h-10 bg-rose-gold/10 rounded-full flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-rose-gold" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+           </div>
+           <div>
+            <h3 class="font-medium mb-1">Email</h3>
+            <p class="text-gray-600">hello@ariacouture.com</p>
+           </div>
+          </div>
+         </div>
+        </div><!-- Quick Contact Buttons -->
+        <div class="grid grid-cols-2 gap-4"><button class="flex items-center justify-center gap-3 bg-green-500 text-white p-4 rounded-xl hover:bg-green-600 transition-colors">
+          <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+          </svg><span class="font-medium">WhatsApp</span> </button> <button class="flex items-center justify-center gap-3 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white p-4 rounded-xl hover:opacity-90 transition-opacity">
+          <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+          </svg><span class="font-medium">Instagram</span> </button>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- ==================== FOOTER ==================== -->
+   <footer class="bg-charcoal text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12"><!-- Brand -->
+      <div>
+       <h3 class="font-serif-elegant text-2xl mb-6" id="footer-brand">Aria Couture</h3>
+       <p class="text-gray-400 leading-relaxed mb-6">Crafting timeless elegance for the modern woman. Each piece tells a story of tradition, artistry, and sophistication.</p>
+       <div class="flex gap-4"><a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-rose-gold transition-colors">
+         <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z" /> <circle cx="12" cy="12" r="3.5" />
+         </svg></a> <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-rose-gold transition-colors">
+         <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z" />
+         </svg></a> <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-rose-gold transition-colors">
+         <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z" />
+         </svg></a>
+       </div>
+      </div><!-- Quick Links -->
+      <div>
+       <h4 class="font-medium uppercase tracking-wider mb-6 text-sm">Quick Links</h4>
+       <ul class="space-y-3">
+        <li><a href="#" onclick="navigateTo('shop')" class="text-gray-400 hover:text-rose-gold transition-colors">Shop All</a></li>
+        <li><a href="#" onclick="navigateTo('shop')" class="text-gray-400 hover:text-rose-gold transition-colors">New Arrivals</a></li>
+        <li><a href="#" onclick="navigateTo('shop')" class="text-gray-400 hover:text-rose-gold transition-colors">Bridal Collection</a></li>
+        <li><a href="#" onclick="navigateTo('about')" class="text-gray-400 hover:text-rose-gold transition-colors">About Us</a></li>
+        <li><a href="#" onclick="navigateTo('contact')" class="text-gray-400 hover:text-rose-gold transition-colors">Contact</a></li>
+       </ul>
+      </div><!-- Customer Care -->
+      <div>
+       <h4 class="font-medium uppercase tracking-wider mb-6 text-sm">Customer Care</h4>
+       <ul class="space-y-3">
+        <li><a href="#" class="text-gray-400 hover:text-rose-gold transition-colors">Size Guide</a></li>
+        <li><a href="#" class="text-gray-400 hover:text-rose-gold transition-colors">Shipping Info</a></li>
+        <li><a href="#" class="text-gray-400 hover:text-rose-gold transition-colors">Returns &amp; Exchange</a></li>
+        <li><a href="#" class="text-gray-400 hover:text-rose-gold transition-colors">FAQs</a></li>
+        <li><a href="#" class="text-gray-400 hover:text-rose-gold transition-colors">Care Instructions</a></li>
+       </ul>
+      </div><!-- Newsletter -->
+      <div>
+       <h4 class="font-medium uppercase tracking-wider mb-6 text-sm">Newsletter</h4>
+       <p class="text-gray-400 mb-4">Subscribe for exclusive offers and new collection updates.</p>
+       <form onsubmit="handleNewsletterSubmit(event)" class="flex gap-2"><input type="email" placeholder="Your email" class="flex-1 px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:border-rose-gold transition-colors text-white placeholder-gray-500" required> <button type="submit" class="px-4 py-3 bg-rose-gold rounded-lg hover:bg-rose-gold/80 transition-colors">
+         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+         </svg></button>
+       </form>
+       <div id="newsletter-success" class="hidden mt-3 text-green-400 text-sm">
+        Thank you for subscribing!
+       </div>
+      </div>
+     </div>
+     <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-gray-500 text-sm">© 2024 Aria Couture. All rights reserved.</p>
+      <div class="flex gap-6 text-sm"><a href="#" class="text-gray-500 hover:text-rose-gold transition-colors">Privacy Policy</a> <a href="#" class="text-gray-500 hover:text-rose-gold transition-colors">Terms of Service</a>
+      </div>
+     </div>
+    </div>
+   </footer><!-- Cart Sidebar -->
+   <div id="cart-sidebar" class="fixed inset-0 z-50 hidden">
+    <div class="absolute inset-0 bg-black/50" onclick="toggleCart()"></div>
+    <div class="absolute right-0 top-0 bottom-0 w-full max-w-md bg-white shadow-2xl transform transition-transform">
+     <div class="h-full flex flex-col">
+      <div class="flex items-center justify-between p-6 border-b">
+       <h2 class="font-serif-elegant text-2xl">Your Cart</h2><button onclick="toggleCart()" class="p-2 hover:text-rose-gold transition-colors">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />
+        </svg></button>
+      </div>
+      <div class="flex-1 overflow-auto p-6" id="cart-items"><!-- Cart items rendered by JS -->
+      </div>
+      <div class="p-6 border-t">
+       <div class="flex justify-between items-center mb-6"><span class="text-lg">Subtotal</span> <span class="font-serif-elegant text-2xl" id="cart-total">₹0</span>
+       </div><button class="btn-luxury w-full bg-charcoal text-white px-8 py-4 text-sm uppercase tracking-widest font-medium hover:bg-rose-gold"> Checkout </button>
+       <p class="text-center text-gray-500 text-sm mt-4">Free shipping on orders above ₹10,000</p>
+      </div>
+     </div>
+    </div>
+   </div><!-- Toast Notification -->
+   <div id="toast" class="fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-charcoal text-white px-6 py-4 rounded-lg shadow-lg opacity-0 transition-opacity duration-300 z-50 pointer-events-none"><span id="toast-message">Item added to cart</span>
+   </div>
+  </div>
+  <script>
+    // Configuration
+    const defaultConfig = {
+      brand_name: 'Aria Couture',
+      tagline: 'Timeless Fashion Crafted with Elegance',
+      designer_name: 'Aria Sharma',
+      cta_primary: 'Shop Collection',
+      cta_secondary: 'Explore Designer',
+      background_color: '#FAF8F5',
+      text_color: '#2D2D2D',
+      accent_color: '#B76E79',
+      secondary_surface_color: '#F5F0EB',
+      gold_accent_color: '#C9A962'
+    };
+    
+    let config = { ...defaultConfig };
+    
+    // Product Data
+    const products = [
+      { id: 1, name: 'Celestial Bloom Lehenga', price: 24999, originalPrice: 29999, category: 'Bridal Wear', fabric: 'Silk', isNew: true, isBestSeller: true },
+      { id: 2, name: 'Midnight Velvet Gown', price: 18999, originalPrice: null, category: 'Evening Gowns', fabric: 'Velvet', isNew: false, isBestSeller: true },
+      { id: 3, name: 'Rose Garden Saree', price: 12999, originalPrice: 15999, category: 'Festive Wear', fabric: 'Georgette', isNew: true, isBestSeller: false },
+      { id: 4, name: 'Pearl Drop Anarkali', price: 16999, originalPrice: null, category: 'Festive Wear', fabric: 'Silk', isNew: false, isBestSeller: true },
+      { id: 5, name: 'Ivory Dream Kurta Set', price: 8999, originalPrice: 10999, category: 'Casual Chic', fabric: 'Cotton', isNew: true, isBestSeller: false },
+      { id: 6, name: 'Golden Hour Lehenga', price: 28999, originalPrice: null, category: 'Bridal Wear', fabric: 'Silk', isNew: false, isBestSeller: true },
+      { id: 7, name: 'Blush Elegance Gown', price: 21999, originalPrice: 25999, category: 'Evening Gowns', fabric: 'Georgette', isNew: true, isBestSeller: false },
+      { id: 8, name: 'Azure Breeze Kurta', price: 6999, originalPrice: null, category: 'Casual Chic', fabric: 'Cotton', isNew: false, isBestSeller: false },
+      { id: 9, name: 'Royal Maroon Sharara', price: 19999, originalPrice: 23999, category: 'Festive Wear', fabric: 'Velvet', isNew: true, isBestSeller: true },
+      { id: 10, name: 'Champagne Dreams Saree', price: 15999, originalPrice: null, category: 'Festive Wear', fabric: 'Silk', isNew: false, isBestSeller: false },
+      { id: 11, name: 'Starlight Lehenga', price: 32999, originalPrice: 38999, category: 'Bridal Wear', fabric: 'Silk', isNew: true, isBestSeller: false },
+      { id: 12, name: 'Forest Green Palazzo Set', price: 7999, originalPrice: null, category: 'Casual Chic', fabric: 'Cotton', isNew: false, isBestSeller: false }
+    ];
+    
+    let cart = [
+      { id: 1, name: 'Celestial Bloom Lehenga', price: 24999, size: 'S', qty: 1 },
+      { id: 5, name: 'Ivory Dream Kurta Set', price: 8999, size: 'M', qty: 1 }
+    ];
+    
+    // Navigation
+    function navigateTo(page) {
+      document.querySelectorAll('.page-section').forEach(section => {
+        section.classList.remove('active');
+      });
+      document.getElementById(`page-${page}`).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      
+      if (page === 'product') {
+        renderRelatedProducts();
+      }
+    }
+    
+    function toggleMobileMenu() {
+      document.getElementById('mobile-menu').classList.toggle('open');
+    }
+    
+    function toggleCart() {
+      const sidebar = document.getElementById('cart-sidebar');
+      sidebar.classList.toggle('hidden');
+      renderCartItems();
+    }
+    
+    // Product Card Generation
+    function createProductSVG(product) {
+      const colors = {
+        'Bridal Wear': { primary: '#B76E79', secondary: '#F5E6D3' },
+        'Evening Gowns': { primary: '#2D2D2D', secondary: '#B76E79' },
+        'Festive Wear': { primary: '#C9A962', secondary: '#2D2D2D' },
+        'Casual Chic': { primary: '#E8DED4', secondary: '#2D2D2D' }
+      };
+      const color = colors[product.category] || colors['Casual Chic'];
+      
+      return `
+        <svg class="w-full h-full" viewBox="0 0 300 400">
+          <defs>
+            <linearGradient id="prod${product.id}" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#F5E6D3"/>
+              <stop offset="100%" style="stop-color:#E8DED4"/>
+            </linearGradient>
+          </defs>
+          <rect fill="url(#prod${product.id})" width="100%" height="100%"/>
+          <ellipse cx="150" cy="100" rx="40" ry="52" fill="#E8DED4"/>
+          <path d="M110 152 Q150 132 190 152 L210 380 Q150 400 90 380 Z" fill="${color.primary}" opacity="0.9"/>
+          <path d="M120 200 Q150 180 180 200" fill="none" stroke="${color.secondary}" stroke-width="2" opacity="0.6"/>
+          <path d="M115 260 Q150 240 185 260" fill="none" stroke="${color.secondary}" stroke-width="1.5" opacity="0.5"/>
+          <circle cx="150" cy="165" r="5" fill="#C9A962"/>
+        </svg>
+      `;
+    }
+    
+    function createProductCard(product, showQuickAdd = true) {
+      const discount = product.originalPrice ? Math.round((1 - product.price / product.originalPrice) * 100) : null;
+      
+      return `
+        <div class="product-card bg-white rounded-2xl overflow-hidden shadow-sm cursor-pointer transition-all duration-300 hover:shadow-lg" onclick="viewProduct(${product.id})">
+          <div class="aspect-[3/4] relative overflow-hidden">
+            <div class="product-image-main absolute inset-0 transition-opacity duration-300">
+              ${createProductSVG(product)}
+            </div>
+            ${product.isNew ? '<span class="absolute top-4 left-4 bg-charcoal text-white text-xs uppercase tracking-widest px-3 py-1 rounded-full">New</span>' : ''}
+            ${discount ? `<span class="absolute top-4 right-4 bg-rose-gold text-white text-xs px-3 py-1 rounded-full">${discount}% OFF</span>` : ''}
+            <button onclick="event.stopPropagation(); toggleWishlist(${product.id})" class="wishlist-btn absolute bottom-4 right-4 w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center hover:scale-110 transition-transform">
+              <svg class="w-5 h-5 text-charcoal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+              </svg>
+            </button>
+          </div>
+          <div class="p-4">
+            <h3 class="font-serif-elegant text-lg mb-1">${product.name}</h3>
+            <p class="text-gray-500 text-sm mb-2">${product.category}</p>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="font-medium">₹${product.price.toLocaleString()}</span>
+                ${product.originalPrice ? `<span class="text-gray-400 text-sm line-through">₹${product.originalPrice.toLocaleString()}</span>` : ''}
+              </div>
+              ${showQuickAdd ? `
+                <button onclick="event.stopPropagation(); quickAddToCart(${product.id})" class="text-rose-gold hover:text-charcoal transition-colors">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                  </svg>
+                </button>
+              ` : ''}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    
+    function renderBestSellers() {
+      const bestSellers = products.filter(p => p.isBestSeller).slice(0, 4);
+      document.getElementById('best-sellers-grid').innerHTML = bestSellers.map(p => createProductCard(p)).join('');
+    }
+    
+    function renderShopProducts() {
+      document.getElementById('shop-products-grid').innerHTML = products.map(p => createProductCard(p)).join('');
+    }
+    
+    function renderRelatedProducts() {
+      const related = products.slice(0, 4);
+      document.getElementById('related-products-grid').innerHTML = related.map(p => createProductCard(p, false)).join('');
+    }
+    
+    function viewProduct(id) {
+      const product = products.find(p => p.id === id);
+      if (product) {
+        document.getElementById('product-title').textContent = product.name;
+        document.getElementById('product-breadcrumb').textContent = product.name;
+        document.getElementById('product-price').textContent = `₹${product.price.toLocaleString()}`;
+        if (product.originalPrice) {
+          document.getElementById('product-original-price').textContent = `₹${product.originalPrice.toLocaleString()}`;
+          document.getElementById('product-original-price').classList.remove('hidden');
+        } else {
+          document.getElementById('product-original-price').classList.add('hidden');
+        }
+        navigateTo('product');
+      }
+    }
+    
+    // Cart Functions
+    function quickAddToCart(id) {
+      const product = products.find(p => p.id === id);
+      if (product) {
+        const existing = cart.find(item => item.id === id);
+        if (existing) {
+          existing.qty++;
+        } else {
+          cart.push({ id: product.id, name: product.name, price: product.price, size: 'M', qty: 1 });
+        }
+        updateCartCount();
+        showToast('Added to cart');
+      }
+    }
+    
+    function addToCart() {
+      const title = document.getElementById('product-title').textContent;
+      const priceText = document.getElementById('product-price').textContent;
+      const price = parseInt(priceText.replace(/[₹,]/g, ''));
+      const activeSize = document.querySelector('.size-btn.active');
+      const size = activeSize ? activeSize.textContent : 'M';
+      
+      const existing = cart.find(item => item.name === title && item.size === size);
+      if (existing) {
+        existing.qty++;
+      } else {
+        cart.push({ id: Date.now(), name: title, price, size, qty: 1 });
+      }
+      updateCartCount();
+      showToast('Added to cart');
+    }
+    
+    function removeFromCart(id) {
+      cart = cart.filter(item => item.id !== id);
+      updateCartCount();
+      renderCartItems();
+    }
+    
+    function updateCartCount() {
+      const total = cart.reduce((sum, item) => sum + item.qty, 0);
+      document.getElementById('cart-count').textContent = total;
+    }
+    
+    function renderCartItems() {
+      const container = document.getElementById('cart-items');
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-12">
+            <svg class="w-16 h-16 mx-auto mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+            </svg>
+            <p class="text-gray-500">Your cart is empty</p>
+          </div>
+        `;
+      } else {
+        container.innerHTML = cart.map(item => `
+          <div class="flex gap-4 mb-6 pb-6 border-b">
+            <div class="w-20 h-24 bg-cream rounded-lg flex-shrink-0">
+              <svg class="w-full h-full" viewBox="0 0 80 96">
+                <rect fill="#E8DED4" width="100%" height="100%" rx="8"/>
+                <ellipse cx="40" cy="30" rx="12" ry="16" fill="#F5E6D3"/>
+                <path d="M28 46 L24 90 L56 90 L52 46" fill="#B76E79" opacity="0.8"/>
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h4 class="font-medium mb-1">${item.name}</h4>
+              <p class="text-sm text-gray-500 mb-2">Size: ${item.size}</p>
+              <div class="flex items-center justify-between">
+                <span class="font-serif-elegant">₹${item.price.toLocaleString()}</span>
+                <button onclick="removeFromCart(${item.id})" class="text-gray-400 hover:text-rose-gold">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      }
+      
+      const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+      document.getElementById('cart-total').textContent = `₹${total.toLocaleString()}`;
+    }
+    
+    // Toast Notification
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-message').textContent = message;
+      toast.style.opacity = '1';
+      toast.style.pointerEvents = 'auto';
+      
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.pointerEvents = 'none';
+      }, 2500);
+    }
+    
+    // Form Handlers
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      document.getElementById('contact-form').reset();
+      document.getElementById('contact-success').classList.remove('hidden');
+      setTimeout(() => {
+        document.getElementById('contact-success').classList.add('hidden');
+      }, 5000);
+    }
+    
+    function handleNewsletterSubmit(e) {
+      e.preventDefault();
+      e.target.reset();
+      document.getElementById('newsletter-success').classList.remove('hidden');
+      setTimeout(() => {
+        document.getElementById('newsletter-success').classList.add('hidden');
+      }, 3000);
+    }
+    
+    // Size selector
+    document.querySelectorAll('.size-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+    
+    function toggleWishlist(id) {
+      showToast('Added to wishlist');
+    }
+    
+    // UI Update Function
+    function updateUI() {
+      // Update brand names
+      document.getElementById('nav-brand').textContent = config.brand_name;
+      document.getElementById('mobile-brand').textContent = config.brand_name;
+      document.getElementById('footer-brand').textContent = config.brand_name;
+      
+      // Update hero
+      document.getElementById('hero-tagline').textContent = config.tagline;
+      document.getElementById('hero-cta-primary').textContent = config.cta_primary;
+      document.getElementById('hero-cta-secondary').textContent = config.cta_secondary;
+      
+      // Update designer name
+      document.getElementById('about-designer-name').textContent = config.designer_name;
+      document.getElementById('about-hero-title').textContent = `Meet ${config.designer_name}`;
+      document.getElementById('quote-attribution').textContent = `— ${config.designer_name}, Founder & Creative Director`;
+      
+      // Update colors
+      document.documentElement.style.setProperty('--ivory', config.background_color);
+      document.documentElement.style.setProperty('--charcoal', config.text_color);
+      document.documentElement.style.setProperty('--rose-gold', config.accent_color);
+      document.documentElement.style.setProperty('--cream', config.secondary_surface_color);
+      document.documentElement.style.setProperty('--muted-gold', config.gold_accent_color);
+    }
+    
+    // Element SDK Integration
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        async onConfigChange(newConfig) {
+          config = { ...defaultConfig, ...newConfig };
+          updateUI();
+        },
+        mapToCapabilities(cfg) {
+          return {
+            recolorables: [
+              {
+                get: () => cfg.background_color || defaultConfig.background_color,
+                set: (value) => {
+                  cfg.background_color = value;
+                  window.elementSdk.setConfig({ background_color: value });
+                }
+              },
+              {
+                get: () => cfg.secondary_surface_color || defaultConfig.secondary_surface_color,
+                set: (value) => {
+                  cfg.secondary_surface_color = value;
+                  window.elementSdk.setConfig({ secondary_surface_color: value });
+                }
+              },
+              {
+                get: () => cfg.text_color || defaultConfig.text_color,
+                set: (value) => {
+                  cfg.text_color = value;
+                  window.elementSdk.setConfig({ text_color: value });
+                }
+              },
+              {
+                get: () => cfg.accent_color || defaultConfig.accent_color,
+                set: (value) => {
+                  cfg.accent_color = value;
+                  window.elementSdk.setConfig({ accent_color: value });
+                }
+              },
+              {
+                get: () => cfg.gold_accent_color || defaultConfig.gold_accent_color,
+                set: (value) => {
+                  cfg.gold_accent_color = value;
+                  window.elementSdk.setConfig({ gold_accent_color: value });
+                }
+              }
+            ],
+            borderables: [],
+            fontEditable: undefined,
+            fontSizeable: undefined
+          };
+        },
+        mapToEditPanelValues(cfg) {
+          return new Map([
+            ['brand_name', cfg.brand_name || defaultConfig.brand_name],
+            ['tagline', cfg.tagline || defaultConfig.tagline],
+            ['designer_name', cfg.designer_name || defaultConfig.designer_name],
+            ['cta_primary', cfg.cta_primary || defaultConfig.cta_primary],
+            ['cta_secondary', cfg.cta_secondary || defaultConfig.cta_secondary]
+          ]);
+        }
+      });
+    }
+    
+    // Initialize
+    renderBestSellers();
+    renderShopProducts();
+    updateCartCount();
+    updateUI();
+  </script>
+</body>
+</html>
